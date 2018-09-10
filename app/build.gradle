@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        applicationId "com.sopan.sms.scheduler"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 5
+        versionName "0.5"
+    }
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning','GoogleAppIndexingApiWarning','MissingTranslation'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}

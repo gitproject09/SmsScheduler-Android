@@ -1,0 +1,43 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sopan.sms.scheduler">
+
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_scheme"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true" >
+
+        <activity android:name=".activity.SmsListActivity" android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AddSmsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.SmsSchedulerPreferenceActivity" />
+
+        <receiver android:name=".receiver.BootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.ReminderReceiver"/>
+        <receiver android:name=".receiver.SmsSenderReceiver"/>
+        <receiver android:name=".receiver.SmsSentReceiver"/>
+        <receiver android:name=".receiver.SmsDeliveredReceiver"/>
+
+        <service android:name=".service.ReminderService"/>
+        <service android:name=".service.SmsSenderService" />
+        <service android:name=".service.SmsSentService" />
+        <service android:name=".service.SmsDeliveredService" />
+        <service android:name=".service.UnscheduleService"/>
+    </application>
+
+</manifest>
